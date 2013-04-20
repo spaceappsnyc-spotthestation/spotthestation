@@ -1,4 +1,8 @@
 Spotthestation::Application.routes.draw do
+  get "foursquare/redirect"
+
+  get "foursquare/authenticate"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
