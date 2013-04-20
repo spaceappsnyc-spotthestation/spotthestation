@@ -24,6 +24,6 @@ class HeavensAbove
     #res = Net::HTTP.start(url.host, url.port) {|http|
       #http.request(req)
     #}
-    puts res
+    res
   end
 end
