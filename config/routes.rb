@@ -1,5 +1,5 @@
 Spotthestation::Application.routes.draw do
-  get "user/auth"
+  post "user/auth"
   post "user/set_next_sighting"
 
   get "home/login"
@@ -12,5 +12,7 @@ Spotthestation::Application.routes.draw do
 
   get "iss/me"
 
+  get "foursquare/authenticate"
+  get "foursquare/token"
   match '/login', :to => 'home#login'
 end

@@ -26,7 +26,7 @@
 				   		console.log(Udata.id); // you can get other information
 				   		// get Token
 				   		var Token = getToken();
-               $.post('/user/auth',{fsq_token:Token});
+               $.post('/user/auth',{fsq_token:Token,authenticity_token:$('meta[name="csrf-token"]')[0].content});
 				   		console.log(Token);
 				   		// Use the response
 				   		
@@ -56,7 +56,7 @@
 			   var authsuccess = function(data){
 				   M.signoutButton( document.body );
 					//checkinPromise = $.Marelle.Checkin.add( {venueId:'4a9ef9e6f964a520023c20e3'} )
-					checkinPromise = $.Marelle.Checkin.add( {venueId:'49da74aef964a5208b5e1fe3'} )
+					checkinPromise = $.Marelle.Checkin.add( {venueId:'51731aa945b06a17def98aef'} )
 					 // {venueId:, venue:, shout:, broadcast:, ll:, llAcc:, alt:, altAcc:}
 					    checkinPromise.then(
 							function callSuccess(){

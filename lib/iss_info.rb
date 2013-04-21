@@ -6,4 +6,13 @@ class IssInfo
   def self.superuser_token
 
   end
+
+  def self.update_foursquare_venue
+    client = Foursquare.get_superuser_client
+    location = JSON.parse(HeavensAbove.get_iss_location)
+    lat = location['iss_position']['latitude']
+    lng = location['iss_position']['longitude']
+    client.venue_edit(IssInfo.fsq_venue_id,{:ll => [lat,lng].join(',')})
+    ['Updated ISS Foursquare venue to ',lat,' ',lng].join
+  end
 end
