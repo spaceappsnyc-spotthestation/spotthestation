@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>ISS Spoter Facebook</title>
+    </head>
+    <body>
+        
+        <div id="fb-root"></div>
+        <script type="text/javascript">
+            window.fbAsyncInit = function() {
+                FB.init({appId: '366028303508213', status: true, cookie: true, xfbml: true});
+
+                /* All the events registered */
+                FB.Event.subscribe('auth.login', function(response) {
+                    // do something with response
+                    login();
+                });
+                FB.Event.subscribe('auth.logout', function(response) {
+                    // do something with response
+                    logout();
+                });
+
+                FB.getLoginStatus(function(response) {
+                    if (response.session) {
+                        // logged in and connected user, someone you know
+                        login();
+                    }
+                });
+            };
+            (function() {
+                var e = document.createElement('script');
+                e.type = 'text/javascript';
+                e.src = document.location.protocol +
+                    '//connect.facebook.net/en_US/all.js';
+                e.async = true;
+                document.getElementById('fb-root').appendChild(e);
+            }());
+
+            function login(){
+                FB.api('/me', function(response) {
+                    document.getElementById('login').style.display = "block";
+                    document.getElementById('login').innerHTML = response.name + " succsessfully logged in!";
+                });
+            }
+            function logout(){
+                document.getElementById('login').style.display = "none";
+            }
+
+            //stream publish method
+            function streamPublish(name, description, hrefTitle, hrefLink, userPrompt){
+                console.log(hrefLink);
+                FB.ui(
+                {
+                    method: 'feed',
+                    name: 'International Spot Station',
+                    link: 'http://spotthestation.nasa.gov/',
+                    picture: document.getElementById('image1').src,
+                    caption: 'Did you know you can see the International Space Station from your house?',
+                    description: 'The space station is easy to see if you know where and when to look for it.'
+                  },
+                function(response) {
+
+                });
+
+            }
+
+
+
+            function showStream(){
+                FB.api('/me', function(response) {
+                    //console.log(response.id);
+                    streamPublish(response.name, 'See the International Space Station', 'hrefTitle', document.getElementById('image1').src, "Share issspotter.net");
+                });
+            }
+
+            function share(){
+                var share = {
+                    method: 'stream.share',
+                    u: 'http://spaceappschallenge.org/static/images/default.jpg'
+                };
+
+
+                FB.ui(share, function(response) { console.log(response); });
+            }
+
+            function graphStreamPublish(){
+                var body = 'Do you know that you can se the International Spot Station from home? well, I saw it :) Visite www.issspotter.com';
+                FB.api('/me/feed', 'post', { message: body }, function(response) {
+                    if (!response || response.error) {
+                        alert('Error occured');
+                    } else {
+                        alert('Post ID: ' + response.id);
+                    }
+                });
+            }
+
+    
+            function setStatus(){
+                status1 = document.getElementById('status').value;
+                FB.api(
+                  {
+                    method: 'status.set',
+                    status: status1
+                  },
+                  function(response) {
+                    if (response == 0){
+                        alert('Your facebook status not updated. Give Status Update Permission.');
+                    }
+                    else{
+                        alert('Your facebook status updated');
+                    }
+                  }
+                );
+            }
+        </script>
+
+        <p><fb:login-button autologoutlink="true" perms="email,user_birthday,status_update,publish_stream,user_about_me"></fb:login-button></p>
+
+        <p>
+            <a href="#" onclick="showStream(); return false;">Publish this experience</a> |
+            <a href="#" onclick="share(); return false;">Share/Invite Your Friends</a> |
+            <a href="#" onclick="graphStreamPublish(); return false;">Publish Message on my wall</a> |
+        </p>
+        Did you see it?
+        <input type="radio" value="Yes" checked="checked" name="feedback">Yes
+        <input type="radio" value="No" name="feedback">No
+        <br>
+        <textarea id="status" cols="50" rows="5">I just See the International Spot Station in the Sky</textarea>
+
+        <br /><br /><br />
+        <div id="login" style ="display:none"></div>
+        <div id="name"></div>
+
+
+
+<!-- Load Feather code -->
+<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+
+<!-- Instantiate Feather -->
+<script type='text/javascript'>
+   var featherEditor = new Aviary.Feather({
+       apiKey: 's07cTWgLzEe7wIS2JMjt2Q',
+       apiVersion: 2,
+       tools: 'effects,stickers,brightness,draw,text',
+       appendTo: '',
+       onSave: function(imageID, newURL) {
+           var img = document.getElementById(imageID);
+           img.src = newURL;
+       },
+       onError: function(errorObj) {
+           alert(errorObj.message);
+       }
+   });
+   function launchEditor(id, src) {
+       featherEditor.launch({
+           image: id,
+           url: src
+       });
+      return false;
+   }
+</script>
+<div id='injection_site'></div>
+
+<img id='image1' src='http://msnbcmedia.msn.com/j/MSNBC/Components/Photo/_new/pb-110307-shuttleNYC-634p.photoblog900.jpg' style="display:none" />
+
+<!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+<p><input type='image' src='http://images.aviary.com/images/edit-photo.png' value='Edit photo' onclick="return launchEditor('image1', 'http://msnbcmedia.msn.com/j/MSNBC/Components/Photo/_new/pb-110307-shuttleNYC-634p.photoblog900.jpg');" /></p>
+
+
+
+
+<script>
+   
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    
+
+    function showPosition(position)
+    {
+        console.log("latitude:" + position.coords.latitude); 
+        console.log("Longitude:" + position.coords.longitude); 
+    }
+</script>
+
+
+
+    </body>
+</html>

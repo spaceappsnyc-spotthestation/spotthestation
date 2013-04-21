@@ -1,0 +1,29 @@
+html, body{
+	margin:0;
+	padding:0;	
+}
+
+#form1{
+	margin-top: 650px;
+}
+
+h1{
+	font-size: 40px;
+	font-
+}
+
+#main{
+	height: 960px;
+	background-image:url("space_background.png");
+	margin:auto;
+	width: 640px;
+}
+
+button{
+	background-color: yellow;
+    height:100px; 
+    width:640px; 
+    //margin: -20px -50px; 
+    position:relative;
+    top:20%; 
+}

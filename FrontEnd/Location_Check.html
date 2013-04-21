@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset=utf-8 />
+        <title>ISS  Spotter - Let's Spot the Station</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="vendor/inflection.js" type="text/javascript" charset="utf-8"></script>
+        <script src="build/marelle.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+        <script type="text/javascript" charset="utf-8">
+
+        $.getJSON("http://api.open-notify.org/iss/?lat="+lat+"&lon="+lng+"&alt=100&n=1", function(data) {
+          var items = [];
+         
+          $.each(data, function(key, val) {
+            items.push('<li id="' + key + '">' + val + '</li>');
+          });
+         
+          $('<ul/>', {
+            'class': 'my-new-list',
+            html: items.join('')
+          }).appendTo('body');
+        });
+                
+  function is_able_to_check_in(lat, lng)
+  {
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET","http://api.open-notify.org/iss/?lat="+lat+"&lon="+lng+"&alt=100&n=1", false );
+    xmlHttp.send( null );
+    var response = $.parseJSON(xmlHttp.responseText)["response"];
+    var next_time = response[0]["risetime"];
+    var now_time = Math.round(new Date().getTime()/1000);
+    return (next_time - now_time) < 60*30; // 30 minute window
+  }
+
+  $(function()
+      {
+        var can_check_in = is_able_to_check_in(40.7, 74);
+        if (can_check_in)
+          $("#qwerty").html("yes");
+        else
+          $("#qwerty").html("no");
+      });
+        </script>
+  <a id="qwerty"> </a>
+</body>
+</html>

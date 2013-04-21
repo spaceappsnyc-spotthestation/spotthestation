@@ -1,0 +1,102 @@
+body{
+	background: #333333;
+	width: 100%;
+}
+/*Reset CSS padding & margin*/
+body, p, span, li, ul, a, input{
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Main CSS : Begin */
+#app{
+	background: #000000;
+	margin: auto;
+	width: 100%;
+	max-width: 1024px;
+	height: 960px;
+	position: relative;
+}
+
+#container{
+	background: url(../img/bg_bottom.png) bottom center no-repeat; 
+	width: inherit;
+	height: inherit;
+}
+
+#sub_container{
+	background: url(../img/bg_top.png) top center no-repeat; 
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+
+#sub_container .checkin{
+	border: none;
+	background: #fdb409;
+	width: 100%;
+	height: 81px;
+	position: absolute;
+	left: 0px;
+	bottom: 133px;
+	cursor: pointer;
+	font-family: 'Oswald', sans-serif;
+	font-size: 36px;
+	text-transform: uppercase;
+}
+
+#sub_container .facebook{
+	border: none;
+	background: #fdb409;
+	width: 100%;
+	height: 81px;
+	position: absolute;
+	left: 0px;
+	bottom: 50px;
+	cursor: pointer;
+	font-family: 'Oswald', sans-serif;
+	font-size: 36px;
+	text-transform: uppercase;
+}
+
+
+/* Main CSS : End */
+
+
+/* Splash page CSS */
+
+#sub_container  .intro{
+	position: absolute;
+	color: #5db1ff;
+	text-transform: uppercase;
+	width: 100%;
+	padding: 0px 42px;	
+	box-sizing:padding-box;
+	-moz-box-sizing: padding-box; /*Firefox fix*/
+	left: 0px;
+	top: 282px;
+}
+
+
+#sub_container  .intro p{
+	font-size: 70px;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	line-height: 80px;
+	margin-bottom: 40px;
+}
+
+#sub_container  .intro p span{
+	font-size: 32px;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+	line-height: 50px;
+}
+
+#sub_container  .intro .location{
+	font-size: 32px;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+	line-height: 50px;
+}

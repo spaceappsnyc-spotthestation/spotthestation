@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>ISS Spoter</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="vendor/inflection.js" type="text/javascript" charset="utf-8"></script>
+        <script src="build/marelle.js" type="text/javascript" charset="utf-8"></script> 
+
+        <script type="text/javascript">
+        // Auth Part
+        $(function() {
+               // setup with your key and a callback function which 
+               $.Marelle( FSQUARE_CLIENT_ID ).done( function( M ){
+                    // grab an authentication promise 
+                   var authpromise = M.authenticateVisitor();
+                   //  handle logged-in user
+                   var authsuccess = function(user){
+                        // Backend Calls
+                        var Udata = user.response.user;
+                        console.log(Udata.firstName);
+                        console.log(Udata.id); // you can get other information
+                        // get Token
+                        var Token = getToken();
+                        console.log(Token);
+                        M.signoutButton( document.body );
+                        $('#username').text("Hello "+ Udata.firstName);
+
+                   };
+                   // handle non user 
+                   var authfailure = function() {
+                        //console.log("No");
+                        M.signinButton( document.body );
+                   };
+                   // wait for promise to resolve
+                   authpromise.then(authsuccess,authfailure)
+                
+               }).fail(function(){
+                    consoloe.log('Marelle could not be loaded.')
+               });
+           });
+
+
+        $(window).bind('load', function () {
+
+                $('#foursquare').bind('click', function() {
+                    //login
+                     
+                    //redirection
+                    document.location.href = "/checkin.html";
+                });
+
+                $('#facebook').bind('click', function() {
+                    document.location.href = "fb.html";
+                });
+        });
+            
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+
+            // on DOM ready...
+            function Checkin() {
+                $.Marelle( FSQUARE_CLIENT_ID ).done( function( M ){
+                   var authpromise = M.authenticateVisitor();
+                   var authsuccess = function(data){
+                       //M.signoutButton( document.body );
+                        //checkinPromise = $.Marelle.Checkin.add( {venueId:'4a9ef9e6f964a520023c20e3'} )
+                        checkinPromise = $.Marelle.Checkin.add( {venueId:'51731aa945b06a17def98aef'} )
+                         // {venueId:, venue:, shout:, broadcast:, ll:, llAcc:, alt:, altAcc:}
+                            checkinPromise.then(
+                                function callSuccess(){
+                                    console.log( 'success Hamdolilah', arguments)
+                                    //$.Marelle.addcomment('I just saw the ISS, Awesome!!');
+                                },
+                                function callFailure(){
+                                    console.log( 'failure', arguments)                              
+                                }
+                           );
+                   };
+                   var authfailure = function() {
+                       //M.signinButton( document.body );
+                   };
+                   authpromise.then(authsuccess,authfailure)
+               }).fail(function(){
+                    consoloe.log('Marelle could not be loaded.')
+               });
+            };  
+
+
+        </script>
+    </head>
+    <body>
+
+
+        <div id="home"></div>
+        <div id="fspage">
+            Checkin
+        </div>
+        <span>Spot the <h1>Internationl space station</h1></span>
+        <span id="foursquare">foursquare</span>
+        <span id="facebook">facebook</span>
+        <span id='checkin-btn'>Check-in</span>
+
+    <script type="text/javascript">
+        $('#checkin-btn').bind('click', function() {
+            Checkin();
+        });
+    </script>
+
+
+        <br><br><br><br><br><br><br><br>
+
+
+<script>
+   
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    
+
+    function showPosition(position)
+    {
+        console.log("latitude:" + position.coords.latitude); 
+        console.log("Longitude:" + position.coords.longitude); 
+    }
+</script>
+
+
+
+    </body>
+</html>
