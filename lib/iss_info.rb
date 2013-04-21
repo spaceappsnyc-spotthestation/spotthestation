@@ -15,8 +15,11 @@ class IssInfo
     update_it(lat,lng)
   end
 
-  def self.fudge_foursquare_venue(lat,lng)
+  def self.fudge_foursquare_venue
     # Set it to Alley NYC coords
+    @client = Foursquare.get_superuser_client
+    lat = 40.75316931842327
+    lng = -73.98977213783496
     update_it(lat,lng)
   end
 
