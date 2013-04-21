@@ -9,9 +9,9 @@ Configuration
 To update the position of the ISS, you must be able to use the Foursquare2 gem.
 The file config/fsq.txt (not in codebase) is a three-line file which contains:
 
-Foursquare Client API Key
-Foursquare Client API Secret
-Oauth2 token for an authenticated user that can manage the venue (probably a Foursquare superuser)
+* Foursquare Client API Key
+* Foursquare Client API Secret
+* Oauth2 token for an authenticated user that can manage the venue (probably a Foursquare superuser)
 
 Once that file exists with valid credentials, you can do these fun things from the Rails console:
 
