@@ -11,12 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420210139) do
+ActiveRecord::Schema.define(:version => 20130421030549) do
 
   create_table "users", :force => true do |t|
     t.string   "fsq_token"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "next_sighting"
+    t.string   "phone_number"
   end
 
   add_index "users", ["fsq_token"], :name => "fsq_token_id_ix"

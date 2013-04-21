@@ -26,6 +26,7 @@
 				   		console.log(Udata.id); // you can get other information
 				   		// get Token
 				   		var Token = getToken();
+               $.post('/user/auth',{fsq_token:Token});
 				   		console.log(Token);
 				   		// Use the response
 				   		
