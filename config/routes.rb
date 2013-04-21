@@ -1,6 +1,7 @@
 Spotthestation::Application.routes.draw do
   post "user/auth"
   post "user/set_next_sighting"
+  post "user/set_phone_number"
 
   get "home/login"
 
