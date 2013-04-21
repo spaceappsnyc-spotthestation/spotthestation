@@ -32,3 +32,8 @@ Users can have a "next_sighting" and "phone_number" attribute set.
 While the station position is being updated, it will also see if there are any users who have a phone_number and a next_sighting (UNIX epoch) set.  If the next_sighting is less than five minutes from now, it will text them with the Twilio credentials configured in the lib/SMS.rb file.
 
 These values can be set with a POST, to be used by not-yet-implemented JavaScript calls.
+
+Further Info
+============
+
+http://onepagerapp.com/internationalspacestation
