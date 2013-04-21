@@ -24,6 +24,7 @@ end
 gem 'jquery-rails'
 gem 'foursquare2', :git => 'http://github.com/spaceappsnyc-spotthestation/foursquare2.git'
 gem 'oauth2'
+gem 'twilio-ruby'
 
 group :development do
   #gem 'sqlite3'
