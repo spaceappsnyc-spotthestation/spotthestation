@@ -15,11 +15,13 @@ The file config/fsq.txt (not in codebase) is a three-line file which contains:
 
 Once that file exists with valid credentials, you can do these fun things from the Rails console:
 
-Update the location of the ISS based on data from the HeavensAbove API:
-IssInfo.update_foursquare_venue
+* Update the location of the ISS based on data from the HeavensAbove API:
 
-Set the location of the ISS to AlleyNYC, where this app was developed at a hackathon:
-IssInfo.fudge_foursquare_venue
+  IssInfo.update_foursquare_venue
+
+* Set the location of the ISS to AlleyNYC, where this app was developed at a hackathon:
+
+  IssInfo.fudge_foursquare_venue
 
 There is a shell script called "runissupdate.sh" which will repeatedly call a rake task that updates the station position.
 
