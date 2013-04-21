@@ -1,4 +1,8 @@
 Spotthestation::Application.routes.draw do
+  get "home/login"
+
+  get "home/landing"
+
   get "foursquare/redirect"
 
   get "foursquare/authenticate"
@@ -8,6 +12,7 @@ Spotthestation::Application.routes.draw do
 
   get "iss/me"
 
+  match '/login', :to => 'home#login'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
